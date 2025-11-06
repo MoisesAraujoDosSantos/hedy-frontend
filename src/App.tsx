@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react"
-import { getHome } from "./services/UserService"
-import { Outlet } from "react-router-dom"
+// import { useEffect, useState } from "react"
+// import { getHome } from "./services/UserService"
+import { BrowserRouter} from "react-router-dom"
+import { AuthProvider } from "./providers/AuthProvider"
+import { Directions } from "./routes"
 
 
 function App() {
- 
+
 
 
   return (
-    <main>
-      <Outlet />
-    </main>
+    <BrowserRouter>
+      <AuthProvider>
+        <Directions />
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
 

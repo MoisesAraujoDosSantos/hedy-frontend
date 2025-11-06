@@ -31,7 +31,8 @@ export const variantButton = tv({
         },
         border: {
             default: "border-[3px]",
-            none: "border-none"
+            none: "border-none",
+            googleStyle: "border border-[#20273C]"
         },
         disabled: { true: "bg-gray-400 opacity-50 cursor-not-allowed pointer-events-none" }
 
