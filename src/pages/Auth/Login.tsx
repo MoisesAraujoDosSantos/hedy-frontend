@@ -5,8 +5,9 @@ import { NormalButton } from "../../components/Buttons/NormalButton";
 import { LogoSvg } from "../../svg/LogoSvg";
 import { EyeSvg } from "../../svg/EyeSvg";
 import { GoogleSvg } from "../../svg/GoogleSvg";
-import { loginUser } from "../../services/UserService";
+
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/Auth";
 
 export const Login = (): ReactElement => {
 
@@ -15,6 +16,7 @@ export const Login = (): ReactElement => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     function handleDisable() {
         setEnable(!enable);
@@ -38,8 +40,10 @@ export const Login = (): ReactElement => {
                 return;
             }
             (async () => {
-                await loginUser(loginData.name, loginData.password);
+                 await login(loginData.name, loginData.password);
+                
                 //nao permite voltar para a pagina de login
+                console.log("Login bem sucedido, redirecionando para /home");
                 navigate("/home", { replace: true });
             })();
         } catch (error) {
@@ -67,8 +71,8 @@ export const Login = (): ReactElement => {
                 />
             </div>
 
-            <LogoHeader className="w-60 h-[75px]" />
-            <form className="flex flex-col gap-5 mt-16 w-[420px] h-auto">
+            <LogoHeader className="z-10 w-60 h-[75px]" />
+            <form className="z-10 flex flex-col gap-5 mt-16 w-[420px] h-auto">
                 <Input id="username" type="text" text="Usuario" placeholder="Nome de Usuário..."
                  className="w-full h-12" value={name} onChange={handleNameChange} />
                 

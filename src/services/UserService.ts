@@ -10,5 +10,6 @@ export const loginUser = async (username: string, password: string) => {
     const response = await api.post('/auth/login',
         { username, password }
     );
-    return response.data;
+    console.log("loginUser response:", response.data.jwt);
+    return response.data.jwt;
 }
