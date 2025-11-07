@@ -7,12 +7,14 @@ export const variantButton = tv({
         colors: {
             lighter: 'text-[#e0e3ff] hover:text-[#1f1f1f] hover:bg-[#e0e3ff]',
             light: 'text-[#6674f4] hover:text-[white] hover:bg-[#6674f4]',
-            main: 'text-[#F1F4FE] bg-[#3E63E7] hover:text-[white] hover:bg-[#5061FC]',
+            main: 'text-[#F1F4FE] bg-transparent hover:text-[white] hover:bg-[#20273C]',
             dark: 'text-[#3346f0] hover:text-[white] hover:bg-[#3346f0]',   
             socialColor: 'text-[#6674f4] bg-[#e4e7ff]',
             submitColor: "text-white bg-[#5061FC] hover:bg-[#8491ff] active:bg-[#3346f0] transition duration-200",
             redStyle: 'text-[#fa2727] hover:text-[#ffffff] hover:bg-[#f04a4a]',
             googleStyle: 'text-[#F1F4FE] bg-[#0F1524] hover:bg-[#153193]/50',
+            sideBarStylePrimary: 'bg-[#20273C] rounded-[10px] text-[#F1F4FE]',
+            sideBarStyleSecondary: 'bg-transparent rounded-[10px] hover:bg-[#20273C] text-[#858CA3] border-none'
         },
 
         size: {
@@ -34,8 +36,11 @@ export const variantButton = tv({
             none: "border-none",
             googleStyle: "border border-[#20273C]"
         },
+        reset : {
+            true: 'border-none p-0 '
+        },
         disabled: { true: "bg-gray-400 opacity-50 cursor-not-allowed pointer-events-none" }
-
+        
     },
     defaultVariants: {
         size: "md",
@@ -43,7 +48,8 @@ export const variantButton = tv({
         display: "inline",
         padding: "default",
         border:"default",
-        disabled: false
+        disabled: false,
+        reset: false
 
     },
 });

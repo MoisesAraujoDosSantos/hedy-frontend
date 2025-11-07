@@ -12,5 +12,5 @@ export const LinkButton = ({children,...props}: LinkButtonProps) => {
 
     return <a {...props} className={`${variantButton(props)} text-center`}>
         {children}
-    </a>;
+    </a>
 }

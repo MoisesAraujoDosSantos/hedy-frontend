@@ -12,5 +12,5 @@ export const NormalButton = ({children,...props}: NormalButton) => {
 
     return <button  {...props} className={`${variantButton(props)}  text-center`}>
         {children}
-    </button>;
+    </button>
 }
