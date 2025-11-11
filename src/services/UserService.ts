@@ -8,7 +8,7 @@ export const getHome = async () => {
 export const loginUser = async (username: string, password: string) => {
     //quero enviar a requisição de login com body contendo username e password 
     const response = await api.post('/auth/login',
-        { username, password }
+        { name : username, password }
     );
     console.log("loginUser response:", response.data.jwt);
     return response.data.jwt;

@@ -10,7 +10,12 @@ ButtonVariants {
 
 export const LinkButton = ({children,...props}: LinkButtonProps) => {
 
-    return <a {...props} className={`${variantButton(props)} text-center`}>
+    // Mescla as classes geradas pelo variantButton com qualquer className
+    // passado via props, permitindo sobrepor/estender estilos quando
+    // o componente é usado.
+    const mergedClassName = `${variantButton(props)} ${props.className ?? ""} text-center`.trim();
+
+    return <a {...props} className={mergedClassName}>
         {children}
     </a>
 }

@@ -13,6 +13,7 @@ export const variantButton = tv({
             submitColor: "text-white bg-[#5061FC] hover:bg-[#8491ff] active:bg-[#3346f0] transition duration-200",
             redStyle: 'text-[#fa2727] hover:text-[#ffffff] hover:bg-[#f04a4a]',
             googleStyle: 'text-[#F1F4FE] bg-[#0F1524] hover:bg-[#153193]/50',
+
             sideBarStylePrimary: 'bg-[#20273C] rounded-[10px] text-[#F1F4FE]',
             sideBarStyleSecondary: 'bg-transparent rounded-[10px] hover:bg-[#20273C] text-[#858CA3] border-none'
         },
@@ -39,6 +40,8 @@ export const variantButton = tv({
         reset : {
             true: 'border-none p-0 '
         },
+       
+        resetAll: { true: '!p-0 !m-0 !border-none !bg-transparent !text-inherit !shadow-none !ring-0' },
         disabled: { true: "bg-gray-400 opacity-50 cursor-not-allowed pointer-events-none" }
         
     },
