@@ -1,3 +1,4 @@
+
 import { NormalButton } from "../../components/Buttons/NormalButton";
 import { useAuth } from "../../hooks/Auth";
 import { LogoutSvg } from "../../svg/LogoutSvg";
@@ -7,9 +8,8 @@ import { TextSvg } from "../../svg/TextSvg";
 export const Home = () => {
 
     const auth = useAuth();
-
-
     return (
+        <main>
         <header>
             <div className="flex flex-row justify-between gap-2 ml-10 text-white">
                 <div>
@@ -22,7 +22,7 @@ export const Home = () => {
                 </div>
             </div>
 
-
         </header>
+        </main>
     )
 }

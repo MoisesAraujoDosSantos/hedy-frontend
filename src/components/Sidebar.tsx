@@ -7,47 +7,59 @@ import { PersonTextSvg } from "../svg/PersonTextSvg"
 import { ReportSvg } from "../svg/ReportSvg"
 import { useNavigate } from "react-router-dom"
 import { LogoHeader } from "./LogoHeader"
+import { useState } from "react"
+import { Button } from "./Buttons/Button"
+import { ArrowSvg } from "../svg/ArrowSvg"
+
+//depois colocar uma variante no tailwind para esconder essa seta quando o botão não tiver subitens
 
 export const Sidebar = () => {
 
     const user = useAuth()
     const navigate = useNavigate()
+    const [focused, setFocused] = useState<string>("");
+    const focusedColor = "#6B8AFA";
+    const notFocusedColor = "#858CA3";
 
     function handleNavigation(path: string) {
         navigate(path)
+    }
+
+    function handleButtonClick(name: string) {
+        setFocused(name);
+
     }
 
     return (
         <aside className="top-0 left-0 fixed flex flex-col items-center bg-[#141A29] m-0 border border-[#20273C] w-80 h-screen text-white">
             <LogoHeader className="mt-10 mr-20 ml-20" />
             <div className="flex flex-col mt-[178px] ml-6 w-[272px] h-[250px]">
-                <div className="mb-4 rounded-[10px] w-[272px] h-12">
-                    <button type="button" onClick={() => handleNavigation("/home")} className="flex justify-between items-center bg-[#20273C] px-3 py-2 rounded-[10px] w-full font-bold text-[#F1F4FE] transition-all duration-02 ease-in">
-                        <span className="inline-block"><HouseSvg className="block w-5 h-5" /></span>
+                <Button name="Inicio" className="flex justify-between" focused={focused} onClick={() => { handleButtonClick("Inicio"); handleNavigation("/home"); }}>
+                    <HouseSvg className="block w-5 h-5" color={focused === "Inicio" ? focusedColor : notFocusedColor} />
+                    <ArrowSvg />
+                </Button>
 
-                        <span>Inicio</span>
-                    </button>
-                </div>
 
-                <button type="button" onClick={() => handleNavigation("/recursos-humanos")} className="flex items-center gap-3 bg-transparent hover:bg-[#20273C] px-3 py-2 border-none rounded-[10px] w-full font-bold text-[#858CA3] transition-all duration-02 ease-in">
-                    <PersonTextSvg className="block w-5 h-5" />
-                    <span>Recursos Humanos</span>
-                </button>
+                <Button name="Recursos Humanos" className="flex justify-between"  focused={focused} onClick={() => { handleButtonClick("Recursos Humanos"); handleNavigation("/recursos-humanos"); }}>
+                    <PersonTextSvg className="block w-5 h-5" color={focused === "Recursos Humanos" ? focusedColor : notFocusedColor} />
+                    <ArrowSvg />
+                </Button>
 
-                <button type="button" onClick={() => handleNavigation("/estoque")} className="flex items-center gap-3 bg-transparent hover:bg-[#20273C] px-3 py-2 border-none rounded-[10px] w-full font-bold text-[#858CA3] transition-all duration-02 ease-in">
-                    <BoxSvg className="block w-5 h-5" />
-                    <span>Estoque</span>
-                </button>
 
-                <button type="button" onClick={() => handleNavigation("/fornecedores")} className="flex items-center gap-3 bg-transparent hover:bg-[#20273C] px-3 py-2 border-none rounded-[10px] w-full font-bold text-[#858CA3] transition-all duration-02 ease-in">
-                    <PersonGroupSvg className="block w-5 h-5" />
-                    <span>Fornecedores</span>
-                </button>
+                <Button name="Estoque" className="flex justify-between"  focused={focused} onClick={() => { handleButtonClick("Estoque"); handleNavigation("/estoque"); }}>
+                    <BoxSvg className="block w-5 h-5" color={focused === "Estoque" ? focusedColor : notFocusedColor} />
+                    <ArrowSvg />
+                </Button>
 
-                <button type="button" onClick={() => handleNavigation("/relatorio")} className="flex items-center gap-3 bg-transparent hover:bg-[#20273C] px-3 py-2 border-none rounded-[10px] w-full font-bold text-[#858CA3] transition-all duration-02 ease-in">
-                    <ReportSvg className="block w-5 h-5" />
-                    <span>Relatório</span>
-                </button>
+                <Button name="Fornecedores"  focused={focused} onClick={() => { handleButtonClick("Fornecedores"); handleNavigation("/fornecedores"); }}>
+                    <PersonGroupSvg className="block w-5 h-5" color={focused === "Fornecedores" ? focusedColor : notFocusedColor} />
+                </Button>
+
+
+                <Button name="Relatório" focused={focused} onClick={() => { handleButtonClick("Relatório"); handleNavigation("/relatorio"); }}>
+                    <ReportSvg className="block w-5 h-5" color={focused === "Relatório" ? focusedColor : notFocusedColor} />
+                </Button>
+
             </div>
             <div className="flex flex-col gap-2 bg-[#1B2132] mt-[350px] mr-6 ml-6 p-3 rounded-[10px] w-[272px]">imagem {user?.user?.name}
                 <p>email@exemplo.com</p>
