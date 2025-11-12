@@ -3,21 +3,28 @@ import { variantButton } from "./Button.variant";
 
 export type ButtonVariants = VariantProps<typeof variantButton>
 
-export interface NormalButton extends React.ButtonHTMLAttributes<HTMLButtonElement>, 
+export interface NormalButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, 
 ButtonVariants {
     children: React.ReactNode;
+    tooltip?: string;
 }
 
-export const NormalButton = ({children,...props}: NormalButton) => {
+export const NormalButton = ({children, tooltip, ...props}: NormalButtonProps) => {
 
     // Mescla as classes geradas pelo variantButton com qualquer className
     // passado via props, permitindo sobrepor/estender estilos quando
     // o componente é usado (por exemplo: `className="flex items-center"`).
-    const mergedClassName = `${variantButton(props)} ${props.className ?? ""} text-center`.trim();
+    const mergedClassName = `${variantButton(props)} ${props.className ?? ""} text-center relative`.trim();
+    
+    return (
+            <button {...props} className={mergedClassName}>
+                {children}
+            </button>
+         
+    );
 
-    return <button {...props} className={mergedClassName}>
-        {children}
-    </button>
+
+
 //  antes este componente sobrescrevia qualquer `className` passado via
 // props com o resultado de `variantButton(props)`. Agora mesclamos as
 // classes (`variantButton(props)` + `props.className`) para que quem usar o
@@ -31,6 +38,6 @@ export const NormalButton = ({children,...props}: NormalButton) => {
 // estilo herdado). Use `<NormalButtonReset>...</NormalButtonReset>` ou
 // `<NormalButton resetAll>` — ambos funcionam porque `resetAll` é uma
 // variante do `variantButton`.
-export const NormalButtonReset = ({ children, ...props }: NormalButton) => {
+export const NormalButtonReset = ({ children, ...props }: NormalButtonProps) => {
     return <NormalButton {...props} resetAll>{children}</NormalButton>
 }
