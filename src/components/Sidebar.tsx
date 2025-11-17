@@ -18,8 +18,8 @@ export const Sidebar = () => {
     const user = useAuth()
     const navigate = useNavigate()
     const [focused, setFocused] = useState<string>("");
-    const focusedColor = "#6B8AFA";
-    const notFocusedColor = "#858CA3";
+    const focusedColor = "#6B8AFA ease-in-out duration-600";
+    const notFocusedColor = "#858CA3 ease-in-out duration-600";
 
     function handleNavigation(path: string) {
         navigate(path)
@@ -36,19 +36,20 @@ export const Sidebar = () => {
             <div className="flex flex-col mt-[178px] ml-6 w-[272px] h-[250px]">
                 <Button name="Inicio" className="flex justify-between" focused={focused} onClick={() => { handleButtonClick("Inicio"); handleNavigation("/home"); }}>
                     <HouseSvg className="block w-5 h-5" color={focused === "Inicio" ? focusedColor : notFocusedColor} />
-                    <ArrowSvg />
+                    {focused === "Inicio" && <ArrowSvg />}
                 </Button>
 
 
                 <Button name="Recursos Humanos" className="flex justify-between"  focused={focused} onClick={() => { handleButtonClick("Recursos Humanos"); handleNavigation("/recursos-humanos"); }}>
                     <PersonTextSvg className="block w-5 h-5" color={focused === "Recursos Humanos" ? focusedColor : notFocusedColor} />
-                    <ArrowSvg />
+                    {focused === "Recursos Humanos" && <ArrowSvg className="rotate-90"/>}
+        
                 </Button>
 
 
                 <Button name="Estoque" className="flex justify-between"  focused={focused} onClick={() => { handleButtonClick("Estoque"); handleNavigation("/estoque"); }}>
                     <BoxSvg className="block w-5 h-5" color={focused === "Estoque" ? focusedColor : notFocusedColor} />
-                    <ArrowSvg />
+                    {focused === "Estoque" && <ArrowSvg className="rotate-90" />}
                 </Button>
 
                 <Button name="Fornecedores"  focused={focused} onClick={() => { handleButtonClick("Fornecedores"); handleNavigation("/fornecedores"); }}>

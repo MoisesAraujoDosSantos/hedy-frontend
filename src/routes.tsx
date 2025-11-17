@@ -3,7 +3,7 @@ import { Home } from "./pages/home/Home";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { Login } from "./pages/Auth/Login";
 import { HumanResources } from "./pages/HumanResources";
-import { Suppliers } from "./pages/Suppliers";
+import { Suppliers } from "./pages/supplier/Suppliers";
 import { Stock } from "./pages/Stock";
 import { Report } from "./pages/Report";
 

@@ -17,7 +17,7 @@ export const Home = () => {
                     <h1 className="font-bold text-[28px] leading-8">Inicio</h1>
                 </div>
                 <div className="flex flex-row items-center gap-5 mr-10">
-                    {/* ao passar o mouse por cima, aparece um nome indicando o que é o botao */}
+                    
                     <NormalButton reset={true}  className="p-3.5 border border-[#20273C] rounded-[10px] size-12" title="Configurações da Empresa">
                         <TextSvg />
                     </NormalButton>
