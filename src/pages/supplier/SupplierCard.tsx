@@ -4,7 +4,7 @@ export const SupplierCard = ({ information }: { information: SupplierType[] }) =
     return (
         <>
 
-            <div className="flex flex-col gap-4 bg-[#141A29] mt-10 ml-10 rounded-[10px] w-[1520px] h-[872px]">
+            <div className="flex flex-col gap-4 bg-[#141A29] mt-10 ml-10 border-[#20273C] border-2 rounded-[10px] w-[1520px] h-[872px]">
                 <p className="mt-5 ml-5 font-semibold text-[#E0E2EB] text-2xl">Listagem </p>
                 <header className="items-center grid grid-cols-6 bg-[#20273C] w-full h-[50px] text-[#858CA3]">
                         <p className="ml-5">Nome Fantasia</p>

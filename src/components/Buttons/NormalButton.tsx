@@ -9,7 +9,7 @@ ButtonVariants {
     tooltip?: string;
 }
 
-export const NormalButton = ({children, tooltip, ...props}: NormalButtonProps) => {
+export const NormalButton = ({children, ...props}: NormalButtonProps) => {
 
     // Mescla as classes geradas pelo variantButton com qualquer className
     // passado via props, permitindo sobrepor/estender estilos quando
