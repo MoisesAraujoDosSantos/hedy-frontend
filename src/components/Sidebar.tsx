@@ -42,14 +42,14 @@ export const Sidebar = () => {
 
                 <Button name="Recursos Humanos" className="flex justify-between"  focused={focused} onClick={() => { handleButtonClick("Recursos Humanos"); handleNavigation("/recursos-humanos"); }}>
                     <PersonTextSvg className="block w-5 h-5" color={focused === "Recursos Humanos" ? focusedColor : notFocusedColor} />
-                    {focused === "Recursos Humanos" && <ArrowSvg className="rotate-90"/>}
+                    {focused === "Recursos Humanos" && <ArrowSvg className="-rotate-90"/>}
         
                 </Button>
 
 
                 <Button name="Estoque" className="flex justify-between"  focused={focused} onClick={() => { handleButtonClick("Estoque"); handleNavigation("/estoque"); }}>
                     <BoxSvg className="block w-5 h-5" color={focused === "Estoque" ? focusedColor : notFocusedColor} />
-                    {focused === "Estoque" && <ArrowSvg className="rotate-90" />}
+                    {focused === "Estoque" && <ArrowSvg className="-rotate-90" />}
                 </Button>
 
                 <Button name="Fornecedores"  focused={focused} onClick={() => { handleButtonClick("Fornecedores"); handleNavigation("/fornecedores"); }}>

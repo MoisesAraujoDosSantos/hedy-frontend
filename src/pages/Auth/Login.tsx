@@ -43,7 +43,7 @@ export const Login = (): ReactElement => {
                  await login(loginData.name, loginData.password);
                 
                 //nao permite voltar para a pagina de login
-                console.log("Login bem sucedido, redirecionando para /home");
+              
                 navigate("/home", { replace: true });
             })();
         } catch (error) {
@@ -79,7 +79,7 @@ export const Login = (): ReactElement => {
                 <div className="relative">
                     <Input id="password" text="Senha" placeholder="Senha de acesso..."
                      className="w-full h-12" type={seen} value={password} onChange={handlePasswordChange} />
-                    <button type="button" onClick={handleDisable} className="top-[72%] right-3 absolute -translate-y-1/2 cursor-pointer transform">
+                    <button aria-label="ver caracteres" type="button" onClick={handleDisable} className="top-[72%] right-3 absolute -translate-y-1/2 cursor-pointer transform">
                         <EyeSvg width={20} height={20} EyeSlash={enable} />
                     </button>
                 </div>
@@ -88,8 +88,8 @@ export const Login = (): ReactElement => {
                     Entrar
                 </NormalButton>
                 <div className="relative">
+                    <NormalButton aria-label="entrar com google" className="rounded-[10px] w-full h-12" border="googleStyle" colors="googleStyle">
                     <GoogleSvg className="top-[50%] left-[25%] absolute -translate-y-1/2" />
-                    <NormalButton className="rounded-[10px] w-full h-12" border="googleStyle" colors="googleStyle">
                         Entrar com google
                     </NormalButton>
                 </div>

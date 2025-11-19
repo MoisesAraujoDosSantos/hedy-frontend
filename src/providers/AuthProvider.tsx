@@ -14,10 +14,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // função pra login
     const login = async (username: string, password: string): Promise<void> => {
         const response = await loginUser(username, password);
-        console.log("AuthProvider - loginUser response:", response);
+        
         //loginuser retorna o jwt com os dados do usuario
         if (!response) return;
-        console.log("AuthProvider - login response:", response);
         const jwtToken = response;
         const jwtDecoded: { id: number, name: string, role: string } = jwtDecode(jwtToken);
         const user = {

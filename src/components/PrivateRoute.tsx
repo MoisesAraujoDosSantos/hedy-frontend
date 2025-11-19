@@ -9,11 +9,11 @@ export interface PrivateRouteProps {
 
 export const PrivateRoute = () => {
     const { user } = useAuth();
-    console.log("PrivateRoute - user:", user);
+    
     if (!user) {
         return <Navigate to="/auth/login" />;
     }
-    console.log("user autenticado:", user);
+
     return (
         <div className="flex flex-row h-screen">
             <Sidebar />

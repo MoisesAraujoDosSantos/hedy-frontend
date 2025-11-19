@@ -6,7 +6,7 @@ export const variantButton = tv({
     variants: {
         colors: {
             lighter: 'text-[#e0e3ff] hover:text-[#1f1f1f] hover:bg-[#e0e3ff]',
-            light: 'text-[#6674f4] hover:text-[white] hover:bg-[#6674f4]',
+            light: 'bg-[#3E63E7] text-[#F1F4FE] hover:text-[white] hover:bg-[#6674f4]',
             main: 'text-[#F1F4FE] bg-transparent hover:text-[white] hover:bg-[#20273C]',
             dark: 'text-[#3346f0] hover:text-[white] hover:bg-[#3346f0]',   
             socialColor: 'text-[#6674f4] bg-[#e4e7ff]',
