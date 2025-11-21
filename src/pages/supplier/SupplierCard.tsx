@@ -1,3 +1,5 @@
+import { EditSvg } from "../../svg/EditSvg"
+import { TrashSvg } from "../../svg/TrashSvg"
 import type { SupplierType } from "../../types/SupplierType"
 
 export const SupplierCard = ({ information }: { information: SupplierType[] }) => {
@@ -24,7 +26,7 @@ export const SupplierCard = ({ information }: { information: SupplierType[] }) =
                         <p className="w-[230px] h-10">{supplier.cnpj}</p>
                         <p className="w-[230px] h-10">{supplier.value}</p>
                         <p className="w-[230px] h-10">{supplier.registration_date}</p>
-                        <div className="flex gap-2 w-fit"><p>editar</p> <p>excluir</p></div>
+                        <div className="flex gap-5 w-fit"><EditSvg /> <TrashSvg /></div>
                         <span className="col-span-6 border-[#20273C] border-b w-[97%]"></span>
                     </div>
                 )))}

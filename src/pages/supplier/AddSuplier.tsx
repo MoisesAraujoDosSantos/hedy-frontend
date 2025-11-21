@@ -14,7 +14,7 @@ export const AddSuplier = () => {
     const [value,set_value ] = useState("")
     const navigate = useNavigate();
     
-    const submit =  useSubmitSupplier();
+    const submit = useSubmitSupplier();
     
     function handleGoBack(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
@@ -23,17 +23,31 @@ export const AddSuplier = () => {
     
     function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
-        alert("Fornecedor adicionado com sucesso!");
+        // mostra confirmação imediata (opcional)
         const data = {legal_name,trade_name,cnpj,type,value}
-    
-        // submit.mutate(data)
-        //chamar alguma função pra salvar os dados
-        navigate('..')
+
+        submit.mutate(data, {
+            onSuccess: () => {
+                alert(`Fornecedor adicionado com sucesso! ${JSON.stringify(data)}`);
+                navigate('..');
+            },
+            onError: () => { alert("Erro ao adicionar fornecedor."); }
+        })
     }
-//por algum motivo o legal_name nao ta atualizando corretamente, ta tendo delay de uma letra
     function handleLegalNameChange(value: string) {
         set_legal_name(value);
-        console.log(legal_name);
+    }
+    
+    function handleTradeNameChange(value: string) {
+        set_trade_name(value);
+    }
+    
+    function handleCnpjChange(value: string) {
+        set_cnpj(value);
+    }
+    
+    function handleValueChange(value: string) {
+        set_value(value);
     }
 
     return (
@@ -56,9 +70,9 @@ export const AddSuplier = () => {
                     </div>
                     <form className="flex justify-between gap-5 w-full">
                         <Input value={legal_name} onChange={handleLegalNameChange}  text="Nome Fantasia" className="border-2 w-[355px]"></Input>
-                        <Input onChange={set_trade_name} text="Razão Social" className="border-2 w-[355px]"></Input>
-                        <Input onChange={set_cnpj} text="CNPJ" className="border-2 w-[355px]"></Input>
-                        <Input onChange={set_value} text="Telefone" className="border-2 w-[355px]"></Input>
+                        <Input value={trade_name} onChange={handleTradeNameChange} text="Razão Social" className="border-2 w-[355px]"></Input>
+                        <Input value={cnpj} onChange={handleCnpjChange} text="CNPJ" className="border-2 w-[355px]"></Input>
+                        <Input value={value} onChange={handleValueChange} text="Telefone" className="border-2 w-[355px]"></Input>
                     </form>
                 </div>
 
