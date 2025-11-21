@@ -25,11 +25,13 @@ export const ListSuppliers = () => {
         navigate("/fornecedores/adicionar-novo");
         
     }
-
+//depois entender pq n está funcionando o ordernar
     function handleOrderByChange() {
         setOrderBy(orderBy === "up" ? "down" : "up");
         //nao está funcionando o ordernar
-        console.log(<Order orderBy={orderBy} content={information as SupplierType[]} />)
+        
+       const ala = <Order orderBy={orderBy} content={information as SupplierType[]} />
+        console.log(ala)
     }
 
     if (isError) console.log(error.message)
@@ -63,7 +65,7 @@ export const ListSuppliers = () => {
                 </div>
             </div>
             {isLoading && <p>Carregando...</p>}
-            
+            {/* daqui pra cima dá pra reutilizar */}
             <SupplierCard information={information as SupplierType[]} />
 
 

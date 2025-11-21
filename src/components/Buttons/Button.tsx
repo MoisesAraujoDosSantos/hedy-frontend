@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export type SubButtonProps = {
     name: string;
@@ -12,6 +13,7 @@ export interface ButtonProps {
     className?: string;
     expanded?: boolean;
     subbuttons?: SubButtonProps[];
+    hidden?: "block" | "hidden";
 }
 
 
@@ -22,17 +24,19 @@ export interface ButtonProps {
 //                 Cada subbotão pode ser clicado → muda seu próprio estilo
 
 
-export const Button = ({ name, focused, className, children, subbuttons = [], onClick }: ButtonProps) => {
+export const Button = ({ name, focused, className,hidden, children, subbuttons = [], onClick }: ButtonProps) => {
 
     const focusedStyle = "flex items-center gap-3 bg-[#20273C] px-3 py-2 rounded-[10px] w-full font-bold text-[#F1F4FE] transition-all duration-02 ease-in";
-    const notFocusedStyle = "flex items-center gap-3 bg-transparent hover:bg-[#20273C] px-3 py-2 border-none rounded-[10px] w-full font-bold text-[#858CA3] transition-all duration-02 ease-in";
-    const subbuttonFocusedStyle = "bg-blue-300 text-white transition-all duration-200 ease-in";
-    const subbuttonNotFocusedStyle = "bg-gray-100 text-blackm hover:bg-gray-200 transition-all duration-200 ease-in";
+    const notFocusedStyle = "flex items-center gap-3 bg-transparent hover:bg-[#20273C] px-3 py-2 border-none rounded-[10px] w-full font-bold text-[#858CA3] transition-all duration-300 ease-in";
+    const subbuttonFocusedStyle = "text-[#6B8AFA] transition-all duration-200 ease-in px-3 py-2";
+    const subbuttonNotFocusedStyle = "w-full bg-transparent text-blackm hover:bg-[#20273C] px-3 py-2 rounded-[10px] transition-all duration-300 ease-in";
 
     const activeFocused = focused === name;
     const childrenArray = React.Children.toArray(children);
 
     const [subbuttonFocused, setSubbuttonFocused] = useState<string | null>(null);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         setSubbuttonFocused(null);
@@ -40,26 +44,29 @@ export const Button = ({ name, focused, className, children, subbuttons = [], on
 
     function handleSubbuttonClick(subbuttonName: string) {
         setSubbuttonFocused(subbuttonName);
+        navigate("/estoque/" + subbuttonName.toLowerCase().replace(/\s+/g, '-'));
+        
     }
 
 
     return (
-        <div className="rounded-[10px] w-[272px] h-12">
+        <div className="rounded-[10px] w-[272px] min-h-12">
 
 
-            <button className={`${activeFocused ? focusedStyle : notFocusedStyle} ${className ?? ''}`} onClick={onClick} type="button">
-                <div className="flex items-center gap-3"> 
+            <button className={`${activeFocused ? focusedStyle : notFocusedStyle} ${className ?? ''} `} onClick={onClick} type="button">
+                <div className="flex items-center gap-3">
                     {childrenArray[0]}
                     <span>{name}</span>
                 </div>
                 {childrenArray[1]}
             </button>
             {
-                activeFocused && subbuttons?.length > 0 && (subbuttons.map(sub => (
+                (subbuttons.map(sub => (
 
-                    <button key={sub.name} type="button" onClick={() => handleSubbuttonClick(sub.name)
+                    <button key={sub.name} type="button" onClick={() => { handleSubbuttonClick(sub.name), sub.onClick?.() }
                     } className={`${subbuttonFocused === sub.name
-                        ? subbuttonFocusedStyle : subbuttonNotFocusedStyle} ${className ?? ''}`}>
+                        ? subbuttonFocusedStyle : subbuttonNotFocusedStyle} ${className ?? ''}
+                        ${hidden}`}>
                         {sub.name}
                     </button>
                 )))
