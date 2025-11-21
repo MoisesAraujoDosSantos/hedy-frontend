@@ -16,7 +16,8 @@ export const variantButton = tv({
             cancelStyle: 'flex justify-center items-center hover:bg-[#20273C] p-0  w-[14%] text-[#858CA3]',
 
             sideBarStylePrimary: 'bg-[#20273C] rounded-[10px] text-[#F1F4FE]',
-            sideBarStyleSecondary: 'bg-transparent rounded-[10px] hover:bg-[#20273C] text-[#858CA3] border-none'
+            sideBarStyleSecondary: 'bg-transparent rounded-[10px] hover:bg-[#20273C] text-[#858CA3] border-none',
+            modalStyle: 'bg-transparent text-[#E0E2EB] hover:text-[#e0e2eb] hover:bg-[#20273C]'
         },
 
         size: {
@@ -37,7 +38,8 @@ export const variantButton = tv({
             default: "border-[3px]",
             none: "border-none",
             googleStyle: "border border-[#20273C]",
-            cancelStyle: "border border-[#20273C]"
+            cancelStyle: "border border-[#20273C]",
+            modalStyle: "border-2 border-[#20273C] rounded-[10px]"
         },
         reset : {
             true: 'border-none p-0 '

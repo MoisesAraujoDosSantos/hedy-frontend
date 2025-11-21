@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowPointingSvg } from "../../svg/ArrowPointingSvg"
+import { ArrowPointingSvg } from "../../svg/arrow/ArrowPointingSvg"
 import { NormalButton } from "../../components/Buttons/NormalButton";
 import { Input } from "../../components/Forms/Input";
 import { useSubmitSupplier } from "../../hooks/useSubmitSupplier";
 import { useState } from "react";
+import { SuccessModal } from "../../components/modal/SuccessModal";
 
 
 export const AddSuplier = () => {
@@ -12,24 +13,23 @@ export const AddSuplier = () => {
     const [cnpj,set_cnpj ] = useState("")
     const [type ] = useState("phone")
     const [value,set_value ] = useState("")
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
     
     const submit = useSubmitSupplier();
     
     function handleGoBack(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
-        navigate('..')
+        navigate('..');
     }
     
     function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
         // mostra confirmação imediata (opcional)
         const data = {legal_name,trade_name,cnpj,type,value}
-
         submit.mutate(data, {
             onSuccess: () => {
-                alert(`Fornecedor adicionado com sucesso! ${JSON.stringify(data)}`);
-                navigate('..');
+                setIsModalOpen(true);
             },
             onError: () => { alert("Erro ao adicionar fornecedor."); }
         })
@@ -75,7 +75,7 @@ export const AddSuplier = () => {
                         <Input value={value} onChange={handleValueChange} text="Telefone" className="border-2 w-[355px]"></Input>
                     </form>
                 </div>
-
+                <SuccessModal isOpen={isModalOpen} redirectPath="/fornecedores" onClose={() => {setIsModalOpen(false)}} message="Fornecedor adicionado com sucesso" />
                 <footer className="flex justify-end items-center gap-4 border-[#20273C] border-t h-[10%]">
                     <NormalButton  colors="cancelStyle" border="cancelStyle" onClick={handleGoBack} className="rounded-[10px] text-[#E0E2EB]">
                         Cancelar

@@ -6,9 +6,10 @@ import { SupplierCard } from "./SupplierCard";
 import { SearchSvg } from "../../svg/SearchSvg";
 import { Input } from "../../components/Forms/Input";
 import { ArrowSvg } from "../../svg/ArrowSvg";
-import { ArrowPointingSvg } from "../../svg/ArrowPointingSvg";
+import { ArrowPointingSvg } from "../../svg/arrow/ArrowPointingSvg";
 import { NormalButton } from "../../components/Buttons/NormalButton";
 import { useNavigate } from "react-router-dom";
+import { Order } from "./Order";
 
 
 
@@ -16,12 +17,19 @@ import { useNavigate } from "react-router-dom";
 export const ListSuppliers = () => {
     const { data, isLoading, isError, error } = useSupplier({ "fields": "phone,legal_name,trade_name,id,registration_date,cnpj" });
     const [search, setSearch] = useState("");
+    const [orderBy, setOrderBy] = useState<"up" | "down">("up");
     const information = data?.data;
     const navigate = useNavigate();
     function handleAddSupplier(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
         navigate("/fornecedores/adicionar-novo");
         
+    }
+
+    function handleOrderByChange() {
+        setOrderBy(orderBy === "up" ? "down" : "up");
+        //nao está funcionando o ordernar
+        console.log(<Order orderBy={orderBy} content={information as SupplierType[]} />)
     }
 
     if (isError) console.log(error.message)
@@ -40,14 +48,15 @@ export const ListSuppliers = () => {
                     />
                     <div className="gap-3 grid grid-cols-3 border border-[#20273C] rounded-sm w-[230px] h-10">
     
-                        <button className="flex justify-between items-center col-span-2 p-3 rounded-[10px] w-[150px] h-10 text-[#858CA3]">
+                        <button  className="flex justify-between items-center col-span-2 p-3 rounded-[10px] w-[150px] h-10 text-[#858CA3]">
                             ordernar por
                             
                             <ArrowSvg className="col-span-1 rotate-90" />
+                            
                         </button>
 
-                        <button className="flex justify-center items-center hover:bg-[#20273C] p-0 border-[#20273C] border-l text-[#858CA3]">
-                            <ArrowPointingSvg />
+                        <button onClick={handleOrderByChange} className="flex justify-center items-center hover:bg-[#20273C] p-0 border-[#20273C] border-l text-[#858CA3]">
+                            <ArrowPointingSvg direction={orderBy} />
                         </button>
                     </div>
                     <NormalButton colors="light" border="none" className="rounded-[10px] w-[200px]" onClick={handleAddSupplier}> + adicionar novo</NormalButton>
