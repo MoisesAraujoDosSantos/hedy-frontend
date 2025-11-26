@@ -30,17 +30,7 @@ export const SupplierCard = ({ information }: { information: SupplierType[] }) =
                         <span className="col-span-6 border-[#20273C] border-b w-[97%]"></span>
                     </div>
                 )))}
-                {/* {information && (information.map((supplier: SupplierType) => (
 
-                    <div key={supplier.id} className="grid grid-cols-6 ml-5 border-2 w-full text-amber-50">
-                        <p className="w-[230px] h-10">{supplier.legal_name}</p>
-                        <p className="w-[230px] h-10">{supplier.trade_name}</p>
-                        <p className="w-[230px] h-10">{supplier.cnpj}</p>
-                        <p className="w-[230px] h-10">{supplier.value}</p>
-                        <p className="w-[230px] h-10">{supplier.registration_date}</p>
-                        <div className="flex gap-2 w-fit"><p>editar</p> <p>excluir</p></div>
-                    </div>
-                )))} */}
             </div>
         </>
     )

@@ -18,6 +18,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         //loginuser retorna o jwt com os dados do usuario
         if (!response) return;
         const jwtToken = response;
+
+        localStorage.setItem("token", jwtToken);
+
         const jwtDecoded: { id: number, name: string, role: string } = jwtDecode(jwtToken);
         const user = {
             id: jwtDecoded.id,
@@ -25,7 +28,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             role: jwtDecoded.role,
         };
         setUser(user);
-        setToken(jwtToken.token);
+        setToken(jwtToken);
         return;
     } 
     
@@ -33,6 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const logout = (): void => {
         setUser(null);
         setToken(null);
+        localStorage.removeItem("token");
     }
 
     return (<>
