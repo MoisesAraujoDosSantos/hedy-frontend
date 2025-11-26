@@ -1,9 +1,9 @@
-export interface LocationType {
+export interface CategoryType {
     id?: number;
     name?: string;
-    responsible?: string;
-    id_responsible?: number;
     type?: string;
+    father_category?: number;
+    description?: string;
     active?: boolean;
     registration_date?: string;
 }

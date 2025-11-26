@@ -11,9 +11,9 @@ export interface SelectProps {
     onchange?: (value: string) => void;
 
 }
-//fazer isso aqui receber um array de opçõe e mapear elas aqui e mostrar na tela
 
-export const Select = ({ textName, className, itens,onchange }: SelectProps) => {
+
+export const Select = ({ textName, className,onchange, options }: SelectProps) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const focusedClass = isOpen ? "border-blue-500" : "";
@@ -21,11 +21,14 @@ export const Select = ({ textName, className, itens,onchange }: SelectProps) => 
     function handleOpen() {
         setIsOpen(!isOpen);
     }
+    
 
-    function handleSelect(label: string) {
-        set_text(label);
+    function handleSelect(value: string) {
+        console.log(value);
+        const option = options?.find(opt => opt.value === value);
+        set_text(option?.label || "selecione a categoria");
         setIsOpen(false);
-        onchange && onchange(label);
+        onchange && onchange(value);
     }
     return (
         <div className="w-[355px] select">
@@ -41,18 +44,19 @@ export const Select = ({ textName, className, itens,onchange }: SelectProps) => 
                 </div>
             </div>
             <ul id="options" className={`${isOpen ? "" : "hidden"} `} >
-            {itens && itens.map((item) => (
+            {options && options.map((option) => (
                     <div className="group">
                         <li id="option" className="relative flex items-center gap-2 bg-amber-400 hover:bg-amber-500">
                             <label className="flex items-center gap-2 p-2 w-full cursor-pointer">
                                 <input type="radio"
                                     name="category"
-                                    value="category 1"
-                                    data-label={item}
+                                    value={option.value}
+                                    data-label={option.label}
                                     className="cursor-pointer unset"
-                                    onClick={() => handleSelect(item)}
+                                    onClick={() => handleSelect(option.value)}
                                 />
-                                <span className="label">{item}</span>
+                               
+                                <span className="label">{option.label}</span>
                                 <CheckSvg className="opacity-0 group-hover:opacity-100 transition-all duration-200" />
                             </label>
                         </li>

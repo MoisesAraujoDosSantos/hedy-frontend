@@ -10,10 +10,11 @@ import { AddSuplier } from "./pages/supplier/AddSuplier";
 import { Suppliers } from "./pages/supplier/Suppliers";
 import { ListLocations } from "./pages/stock/Location/ListLocations";
 import { Movimentation } from "./pages/stock/Movimentation";
-import { Category } from "./pages/stock/Category";
+import { Category } from "./pages/stock/Category/Category";
 import { Actives } from "./pages/stock/Actives";
 import { AddLocation } from "./pages/stock/Location/AddLocation";
 import { Location } from "./pages/stock/Location/Location";
+import { ListCategories } from "./pages/stock/Category/ListCategories";
 
 
 export const Directions = () => {
@@ -30,7 +31,10 @@ export const Directions = () => {
                         <Route path="adicionar-novo" element={<AddLocation />} />
                     </Route>
                     <Route path="ativos" element={<Actives />} />
-                    <Route path="categoria-Subcategoria" element={<Category />} />
+                    <Route path="categoria-Subcategoria" element={<Category />}>
+                        <Route index element={<ListCategories />} />
+                    
+                    </Route>
                     <Route path="movimentacao" element={<Movimentation />} />
                 </Route>
                 <Route path="fornecedores" element={<Suppliers />}>

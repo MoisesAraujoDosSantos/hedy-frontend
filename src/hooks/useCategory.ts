@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { createGeralService } from "../services/GeralService";
 
-const service = createGeralService('/locations');
+const service = createGeralService('/categories');
 
-export const useLocation = (fields?: { fields: string }) => {
+export const useCategory = (fields?: { fields: string }) => {
     return useQuery({
-        queryKey: ['locations', fields],
+        queryKey: ['categories', fields],
         queryFn: () => service.reader(fields && fields.fields),
         staleTime: 1000, // 1 segundo
 

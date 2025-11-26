@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { ArrowPointingSvg } from "../../svg/arrow/ArrowPointingSvg"
 import { NormalButton } from "../../components/Buttons/NormalButton";
 import { Input } from "../../components/Forms/Input";
-import { useSubmitSupplier } from "../../hooks/useSubmitSupplier";
 import { useState } from "react";
 import { SuccessModal } from "../../components/modal/SuccessModal";
+import { useSubmitCustom } from "../../hooks/useSubmitCustom";
 
 
 export const AddSuplier = () => {
@@ -16,7 +16,7 @@ export const AddSuplier = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
     
-    const submit = useSubmitSupplier();
+    const submit = useSubmitCustom({key: 'suppliers', path: '/suppliers'});
     
     function handleGoBack(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();

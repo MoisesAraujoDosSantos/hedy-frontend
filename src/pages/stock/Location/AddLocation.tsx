@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { ArrowPointingSvg } from "../../../svg/arrow/ArrowPointingSvg"
 import { NormalButton } from "../../../components/Buttons/NormalButton";
 import { Input } from "../../../components/Forms/Input";
 import { useState } from "react";
 import { SuccessModal } from "../../../components/modal/SuccessModal";
 import { Select } from "../../../components/Forms/Select";
-import { useSubmitLocation } from "../../../hooks/useSubmitLocation";
+import { useSubmitCustom } from "../../../hooks/useSubmitCustom";
+
 
 
 export const AddLocation = () => {
@@ -16,9 +17,10 @@ export const AddLocation = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [responsible, set_responsible] = useState("");
     const navigate = useNavigate();
-    const conditions = ["ativo","inativo"];
-    const types = ["amoxarifado","apartamento","estoque"];
-    const submit = useSubmitLocation();
+    const conditions = [{ value: "active", label: "ativo"}, {value: "inactive", label: "inativo"}];
+    const types = [{ value : "warehouse", label: "amoxarifado"},{value: "office", label: "escritorio"}];
+    
+    const submit = useSubmitCustom({key: 'locations', path: '/locations'});
     
     function handleGoBack(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
@@ -28,11 +30,11 @@ export const AddLocation = () => {
     function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault();
         // mostra confirmação imediata (opcional)
-        const data = {name,responsible,status, type}
-        console.log(data);
+        const data = {name,responsible,active: status === "active", type}
         submit.mutate(data, {
             onSuccess: () => {
                 setIsModalOpen(true);
+                
             },
             onError: () => { alert("Erro ao adicionar localidade."); }
         })
@@ -69,11 +71,11 @@ export const AddLocation = () => {
                     <form className="flex justify-between gap-5 w-full">
                         <Input value={name} onChange={handleNameChange}  text="Nome" className="border-2 w-[355px]"></Input>
                         <Input value={responsible} onChange={handleResponsibleChange} text="Responsavel" className="border-2 w-[355px]"></Input>
-                        <Select textName="Tipo" itens={types} onchange={(value)=> set_type(value)} />
-                        <Select textName="status"  itens={conditions} onchange={(value)=> set_status(value)} />
+                        <Select textName="Tipo" options={types} onchange={(value)=> set_type(value)} />
+                        <Select textName="status"  options={conditions} onchange={(value)=> set_status(value)} />
                     </form>
                 </div>
-                <SuccessModal isOpen={isModalOpen} redirectPath="/localidade" onClose={() => {setIsModalOpen(false)}} message="Localidade adicionada com sucesso" />
+                <SuccessModal isOpen={isModalOpen} redirectPath=".." onClose={() => {setIsModalOpen(false)}} message="Localidade adicionada com sucesso" />
                 <footer className="flex justify-end items-center gap-4 border-[#20273C] border-t h-[10%]">
                     <NormalButton  colors="cancelStyle" border="cancelStyle" onClick={handleGoBack} className="rounded-[10px] text-[#E0E2EB]">
                         Cancelar
